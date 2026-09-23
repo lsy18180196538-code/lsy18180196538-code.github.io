@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>分布式事务解决方案：3种模式的对比与选型 - 技术随笔ta</title><style>body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.8;margin:0;padding:0}
+.container{max-width:680px;margin:0 auto;padding:40px 20px}
+.site-header{text-align:center;margin-bottom:40px}
+.site-title{font-size:24px;font-weight:600;color:#1a1a1a;text-decoration:none}
+.site-desc{font-size:13px;color:#999;margin-top:4px}
+.divider{height:1px;background:#eee;margin:30px 0}
+.post-list{list-style:none;padding:0;margin:0}
+.post-item{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px solid #f0f0f0}
+.post-item a{color:#1a1a1a;text-decoration:none;font-size:15px;flex:1}
+.post-item a:hover{color:#576b95}
+.post-date{font-size:12px;color:#bbb;margin-left:16px;white-space:nowrap}
+h1{font-size:22px;font-weight:600;margin:0 0 20px}
+h2{font-size:18px;font-weight:600;margin:24px 0 12px;border-left:3px solid #333;padding-left:10px}
+h3{font-size:16px;font-weight:600;margin:20px 0 10px}
+p{font-size:15px;color:#3a3a3a;margin:0 0 14px}
+pre{background:#1e1e1e;color:#e0e0e0;padding:14px 16px;border-radius:6px;font-size:13px;overflow-x:auto;margin:0 0 14px;line-height:1.5}
+code{background:#f0f0f0;padding:2px 4px;border-radius:3px;font-size:13px;color:#c7254e}
+pre code{background:none;color:inherit;padding:0}
+ul,ol{font-size:15px;color:#3a3a3a;padding-left:20px;margin:0 0 14px}
+li{margin-bottom:6px}
+table{border-collapse:collapse;width:100%;margin:0 0 14px;font-size:14px}
+th{background:#f5f5f5;padding:8px 10px;border:1px solid #ddd;font-weight:bold;text-align:left}
+td{padding:8px 10px;border:1px solid #ddd}
+blockquote{border-left:3px solid #ddd;margin:14px 0;padding:4px 14px;color:#888;background:#fafafa}
+img{max-width:100%;border-radius:4px}
+a{color:#576b95;text-decoration:none}
+.nav-links{display:flex;justify-content:space-between;margin-top:40px;padding-top:20px;border-top:1px solid #eee}
+.nav-links a{font-size:13px;color:#888}
+.meta{font-size:12px;color:#999;margin-bottom:20px}
+.footer{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #eee;font-size:12px;color:#ccc}
+.tag{display:inline-block;background:#f0f0f0;padding:2px 8px;border-radius:3px;font-size:12px;color:#666;margin-right:6px}</style></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>分布式事务解决方案：3种模式的对比与选型</h1><div class="meta">2026-09-22 · 架构</div><div class="divider"></div><p>分布式系统的复杂性远超单体应用。本文梳理了架构设计中必须考虑的核心问题。</p>
+<h2>核心要点</h2>
+<p>本文将从以下 3 个方面展开，带你系统掌握相关知识：</p>
+<ol>
+<li>熔断降级：防止级联故障</li>
+<li>无状态设计：水平扩展的基础</li>
+<li>读写分离：应对读多写少场景</li>
+</ol>
+<h2>1. 熔断降级：防止级联故障</h2>
+<p>下游服务挂了，上游一直重试会把自己也拖死。熔断器在失败率超过阈值时直接返回降级结果，保护系统不雪崩。</p>
+<pre><code>状态流转：
+CLOSED → 正常放行
+  ↓ 失败率超阈值
+OPEN → 直接拒绝（快速失败）
+  ↓ 等待冷却时间
+HALF_OPEN → 试探性放行
+  ↓ 成功 → CLOSED
+  ↓ 失败 → OPEN</code></pre>
+<h2>2. 无状态设计：水平扩展的基础</h2>
+<p>服务不保存会话状态，所有状态存在Redis或数据库中。这样任何实例都能处理任何请求，扩容只需要加机器。</p>
+<pre><code># 有状态（不好）
+# 用户A的请求必须打到实例1
+
+# 无状态（好）
+# 请求可以打到任何实例
+# 会话数据存在 Redis
+
+session_data = redis.get(f"session:{token}")
+if not session_data:
+    return redirect("/login")</code></pre>
+<h2>3. 读写分离：应对读多写少场景</h2>
+<p>大部分系统都是读多写少。主库写、从库读，读请求可以水平扩展，写压力集中在主库，配合缓存效果更佳。</p>
+<pre><code>写请求 → 主库 (Master)
+            ↓ 异步复制
+读请求 → 从库1 (Slave1)
+      → 从库2 (Slave2)
+      → 从库3 (Slave3)
+
+注意：主从延迟问题
+- 写后读可能读不到（从库还没同步）
+- 解决方案：关键读走主库 / 半同步复制</code></pre>
+<h2>对比参考表</h2>
+<p>为了方便你快速对比和记忆，这里整理了一个汇总表格：</p>
+<table>
+<thead>
+<tr>
+<th>设计原则</th>
+<th>目的</th>
+<th>实现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无状态</td>
+<td>水平扩展</td>
+<td>会话存Redis，服务不存状态</td>
+</tr>
+<tr>
+<td>熔断降级</td>
+<td>防雪崩</td>
+<td>Hystrix / Sentinel / 自研</td>
+</tr>
+<tr>
+<td>读写分离</td>
+<td>读性能扩展</td>
+<td>主从复制 + 读路由</td>
+</tr>
+<tr>
+<td>异步解耦</td>
+<td>削峰填谷</td>
+<td>消息队列 + 事件驱动</td>
+</tr>
+</tbody>
+</table>
+<h2>最佳实践</h2>
+<ul>
+<li>考虑边际收益，花1天提升10%不如花1天提升2倍</li>
+<li>先测量再优化，用数据说话，不要凭感觉</li>
+<li>建立性能基准，每次优化后对比结果</li>
+</ul>
+<h2>总结</h2>
+<p>以上技巧都来自真实项目的实践总结，建议你从最简单的一条开始尝试，逐步应用到自己的工作中。工具和方法是死的，人是活的，关键是理解背后的原理并灵活运用。</p>
+<div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · GitHub Pages 静态站点</div></div></body></html>

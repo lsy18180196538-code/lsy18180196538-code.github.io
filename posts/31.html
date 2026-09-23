@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Homebrew 进阶：3个你可能不知道的用法 - 技术随笔ta</title><style>body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.8;margin:0;padding:0}
+.container{max-width:680px;margin:0 auto;padding:40px 20px}
+.site-header{text-align:center;margin-bottom:40px}
+.site-title{font-size:24px;font-weight:600;color:#1a1a1a;text-decoration:none}
+.site-desc{font-size:13px;color:#999;margin-top:4px}
+.divider{height:1px;background:#eee;margin:30px 0}
+.post-list{list-style:none;padding:0;margin:0}
+.post-item{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px solid #f0f0f0}
+.post-item a{color:#1a1a1a;text-decoration:none;font-size:15px;flex:1}
+.post-item a:hover{color:#576b95}
+.post-date{font-size:12px;color:#bbb;margin-left:16px;white-space:nowrap}
+h1{font-size:22px;font-weight:600;margin:0 0 20px}
+h2{font-size:18px;font-weight:600;margin:24px 0 12px;border-left:3px solid #333;padding-left:10px}
+h3{font-size:16px;font-weight:600;margin:20px 0 10px}
+p{font-size:15px;color:#3a3a3a;margin:0 0 14px}
+pre{background:#1e1e1e;color:#e0e0e0;padding:14px 16px;border-radius:6px;font-size:13px;overflow-x:auto;margin:0 0 14px;line-height:1.5}
+code{background:#f0f0f0;padding:2px 4px;border-radius:3px;font-size:13px;color:#c7254e}
+pre code{background:none;color:inherit;padding:0}
+ul,ol{font-size:15px;color:#3a3a3a;padding-left:20px;margin:0 0 14px}
+li{margin-bottom:6px}
+table{border-collapse:collapse;width:100%;margin:0 0 14px;font-size:14px}
+th{background:#f5f5f5;padding:8px 10px;border:1px solid #ddd;font-weight:bold;text-align:left}
+td{padding:8px 10px;border:1px solid #ddd}
+blockquote{border-left:3px solid #ddd;margin:14px 0;padding:4px 14px;color:#888;background:#fafafa}
+img{max-width:100%;border-radius:4px}
+a{color:#576b95;text-decoration:none}
+.nav-links{display:flex;justify-content:space-between;margin-top:40px;padding-top:20px;border-top:1px solid #eee}
+.nav-links a{font-size:13px;color:#888}
+.meta{font-size:12px;color:#999;margin-bottom:20px}
+.footer{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #eee;font-size:12px;color:#ccc}
+.tag{display:inline-block;background:#f0f0f0;padding:2px 8px;border-radius:3px;font-size:12px;color:#666;margin-right:6px}</style></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>Homebrew 进阶：3个你可能不知道的用法</h1><div class="meta">2026-09-20 · 工具</div><div class="divider"></div><p>工欲善其事，必先利其器。这篇文章将带你重新认识日常工具的高级用法，让你的工作效率再上一个台阶。</p>
+<h2>核心要点</h2>
+<p>本文将从以下 3 个方面展开，带你系统掌握相关知识：</p>
+<ol>
+<li>别名配置：让长命令一键触发</li>
+<li>变基整理：让提交历史清晰可读</li>
+<li>全局忽略文件：避免临时文件污染仓库</li>
+</ol>
+<h2>1. 别名配置：让长命令一键触发</h2>
+<p>通过别名机制，将常用的长命令简化为几个字符。不仅节省输入时间，还能减少拼写错误。</p>
+<pre><code>alias gs='git status'
+alias gc='git commit -m'
+alias gp='git push origin HEAD'
+alias gl='git log --oneline --graph -20'</code></pre>
+<h2>2. 变基整理：让提交历史清晰可读</h2>
+<p>交互式变基可以合并提交、调整顺序、修改提交信息，让分支历史像精心编排的故事线。</p>
+<pre><code>git rebase -i HEAD~5
+
+# 常用指令:
+# p = pick (保留)
+# s = squash (合并到上一个)
+# r = reword (修改信息)
+# f = fixup (丢弃信息)</code></pre>
+<h2>3. 全局忽略文件：避免临时文件污染仓库</h2>
+<p>每个开发者的本地环境不同，会产生各种临时文件。全局gitignore让你不用在每个仓库都重复配置。</p>
+<pre><code>git config --global core.excludesfile ~/.gitignore_global
+
+# .gitignore_global
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+*.local</code></pre>
+<h2>对比参考表</h2>
+<p>为了方便你快速对比和记忆，这里整理了一个汇总表格：</p>
+<div>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>作用</th>
+<th>推荐设置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user.name / user.email</td>
+<td>提交者身份</td>
+<td>真实姓名和公司邮箱</td>
+</tr>
+<tr>
+<td>core.autocrlf</td>
+<td>换行符自动转换</td>
+<td>input（Mac/Linux）</td>
+</tr>
+<tr>
+<td>pull.rebase</td>
+<td>pull时用变基而非合并</td>
+<td>true</td>
+</tr>
+<tr>
+<td>init.defaultBranch</td>
+<td>默认分支名</td>
+<td>main</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2>最佳实践</h2>
+<ul>
+<li>建立性能基准，每次优化后对比结果</li>
+<li>先测量再优化，用数据说话，不要凭感觉</li>
+</ul>
+<h2>总结</h2>
+<p>以上技巧都来自真实项目的实践总结，建议你从最简单的一条开始尝试，逐步应用到自己的工作中。工具和方法是死的，人是活的，关键是理解背后的原理并灵活运用。</p>
+<div>
+<h3>💡 推荐资源</h3>
+<div>
+<p>    <a href="https://aliyun.com/ecs?ref=myblog" target="_blank" rel="nofollow sponsored" onmouseover="this.style.borderColor='#0ea5e9'" onmouseout="this.style.borderColor='#e2e8f0'"></p>
+<div>
+<div>阿里云 ECS</div>
+<div>云服务器</div>
+</p></div>
+<p>      <span>了解详情 →</span><br />
+    </a><br />
+    <a href="https://www.jetbrains.com/idea/?ref=myblog" target="_blank" rel="nofollow sponsored" onmouseover="this.style.borderColor='#0ea5e9'" onmouseout="this.style.borderColor='#e2e8f0'"></p>
+<div>
+<div>JetBrains IDE</div>
+<div>强大的 Java/Kotlin IDE，社区版免费</div>
+</p></div>
+<p>      <span>了解详情 →</span><br />
+    </a>
+  </div>
+</div>
+<div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · GitHub Pages 静态站点</div></div></body></html>

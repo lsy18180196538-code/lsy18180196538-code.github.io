@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>React Hooks深度解析：5个你可能不知道的用法 - 技术随笔ta</title><style>body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.8;margin:0;padding:0}
+.container{max-width:680px;margin:0 auto;padding:40px 20px}
+.site-header{text-align:center;margin-bottom:40px}
+.site-title{font-size:24px;font-weight:600;color:#1a1a1a;text-decoration:none}
+.site-desc{font-size:13px;color:#999;margin-top:4px}
+.divider{height:1px;background:#eee;margin:30px 0}
+.post-list{list-style:none;padding:0;margin:0}
+.post-item{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px solid #f0f0f0}
+.post-item a{color:#1a1a1a;text-decoration:none;font-size:15px;flex:1}
+.post-item a:hover{color:#576b95}
+.post-date{font-size:12px;color:#bbb;margin-left:16px;white-space:nowrap}
+h1{font-size:22px;font-weight:600;margin:0 0 20px}
+h2{font-size:18px;font-weight:600;margin:24px 0 12px;border-left:3px solid #333;padding-left:10px}
+h3{font-size:16px;font-weight:600;margin:20px 0 10px}
+p{font-size:15px;color:#3a3a3a;margin:0 0 14px}
+pre{background:#1e1e1e;color:#e0e0e0;padding:14px 16px;border-radius:6px;font-size:13px;overflow-x:auto;margin:0 0 14px;line-height:1.5}
+code{background:#f0f0f0;padding:2px 4px;border-radius:3px;font-size:13px;color:#c7254e}
+pre code{background:none;color:inherit;padding:0}
+ul,ol{font-size:15px;color:#3a3a3a;padding-left:20px;margin:0 0 14px}
+li{margin-bottom:6px}
+table{border-collapse:collapse;width:100%;margin:0 0 14px;font-size:14px}
+th{background:#f5f5f5;padding:8px 10px;border:1px solid #ddd;font-weight:bold;text-align:left}
+td{padding:8px 10px;border:1px solid #ddd}
+blockquote{border-left:3px solid #ddd;margin:14px 0;padding:4px 14px;color:#888;background:#fafafa}
+img{max-width:100%;border-radius:4px}
+a{color:#576b95;text-decoration:none}
+.nav-links{display:flex;justify-content:space-between;margin-top:40px;padding-top:20px;border-top:1px solid #eee}
+.nav-links a{font-size:13px;color:#888}
+.meta{font-size:12px;color:#999;margin-bottom:20px}
+.footer{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #eee;font-size:12px;color:#ccc}
+.tag{display:inline-block;background:#f0f0f0;padding:2px 8px;border-radius:3px;font-size:12px;color:#666;margin-right:6px}</style></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>React Hooks深度解析：5个你可能不知道的用法</h1><div class="meta">2026-09-20 · 教程</div><div class="divider"></div><p>很多人学习新技术时只停留在表面，本文带你深入底层原理，掌握真正的核心知识。</p>
+<h2>核心要点</h2>
+<p>本文将从以下 5 个方面展开，带你系统掌握相关知识：</p>
+<ol>
+<li>缓存重复计算的结果</li>
+<li>用局部变量加速属性查找</li>
+<li>使用内置数据结构替代自定义对象</li>
+<li>并行处理充分利用多核</li>
+<li>生成器表达式节省内存</li>
+</ol>
+<h2>1. 缓存重复计算的结果</h2>
+<p>对于调用频繁、参数有限、结果确定的函数，加上缓存装饰器可以避免重复计算，提升一个数量级。</p>
+<pre><code>from functools import lru_cache
+
+@lru_cache(maxsize=1024)
+def fibonacci(n):
+    if n < 2:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+# 第一次调用慢，后续调用几乎瞬时
+print(fibonacci(100))</code></pre>
+<h2>2. 用局部变量加速属性查找</h2>
+<p>Python的属性查找是有开销的。在循环内部，将频繁访问的属性或全局函数绑定到局部变量，可以显著提速。</p>
+<div>
+<div>📖</div>
+<h3>以上为部分预览内容</h3>
+<p>本文还有更多精彩内容，关注我们的博客获取完整文章。</p>
+<p>订阅后可阅读全部技术文章，持续更新中。</p>
+<p><button onclick="var d=this.parentElement.querySelector('.paywall-detail');if(d)d.style.display=d.style.display=='none'?'block':'none';" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">了解订阅方式 →</button></p>
+<div>
+<p><strong>订阅方式：</strong></p>
+<p>📧 邮箱订阅：发送邮件至 admin@blog.local</p>
+<p>💬 微信公众号：AI Tech Blog</p>
+<p>⭐ 持续更新，更多优质技术内容等你发现</p>
+</div>
+<p>觉得有用？分享给朋友也是对我们的支持 ❤️</p>
+</div>
+<div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · GitHub Pages 静态站点</div></div></body></html>
