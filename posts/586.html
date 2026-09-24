@@ -40,7 +40,8 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>CSS布局实战：5种经典布局的现代实现</h1><div class="meta">2026-09-23 · 教程</div><div class="divider"></div><p>很多人学习新技术时只停留在表面，本文带你深入底层原理，掌握真正的核心知识。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>CSS布局实战：5种经典布局的现代实现</h1><div class="meta">2026-09-23 · 教程</div><div class="divider"></div>
+<p class="intro">很多人学习新技术时只停留在表面，本文带你深入底层原理，掌握真正的核心知识。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 5 个方面展开，带你系统掌握相关知识：</p>
 <ol>
@@ -52,7 +53,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius
 </ol>
 <h2>1. 使用内置数据结构替代自定义对象</h2>
 <p>很多场景下，tuple、namedtuple、dataclass 比手写的类更轻量、更快。选择合适的数据结构是优化的第一步。</p>
-<pre><code>from collections import namedtuple
+<pre><code class="language-python">from collections import namedtuple
 from dataclasses import dataclass
 
 # 好：轻量且不可变
@@ -67,7 +68,7 @@ class Point:
     label: str = 'origin'</code></pre>
 <h2>2. 用局部变量加速属性查找</h2>
 <p>Python的属性查找是有开销的。在循环内部，将频繁访问的属性或全局函数绑定到局部变量，可以显著提速。</p>
-<pre><code>import math
+<pre><code class="language-python">import math
 
 def compute_slow(values):
     result = []
@@ -85,7 +86,7 @@ def compute_fast(values):
     return result</code></pre>
 <h2>3. 缓存重复计算的结果</h2>
 <p>对于调用频繁、参数有限、结果确定的函数，加上缓存装饰器可以避免重复计算，提升一个数量级。</p>
-<pre><code>from functools import lru_cache
+<pre><code class="language-python">from functools import lru_cache
 
 @lru_cache(maxsize=1024)
 def fibonacci(n):
@@ -97,14 +98,14 @@ def fibonacci(n):
 print(fibonacci(100))</code></pre>
 <h2>4. 生成器表达式节省内存</h2>
 <p>列表推导会一次性生成所有元素占用内存，生成器表达式则是惰性计算，逐个产出，处理大数据时差异巨大。</p>
-<pre><code># 坏：一次性加载全部到内存
+<pre><code class="language-python"># 坏：一次性加载全部到内存
 total = sum([x * x for x in range(10_000_000)])
 
 # 好：逐个计算，内存几乎为0
 total = sum(x * x for x in range(10_000_000))</code></pre>
 <h2>5. 并行处理充分利用多核</h2>
 <p>CPU密集型任务用多进程，IO密集型任务用多线程或asyncio。选对并发模型，性能轻松翻倍。</p>
-<pre><code>from concurrent.futures import ProcessPoolExecutor
+<pre><code class="language-python">from concurrent.futures import ProcessPoolExecutor
 
 def process_item(item):
     # CPU密集型计算

@@ -40,7 +40,8 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>jq 命令实战：3个技巧处理 JSON 数据</h1><div class="meta">2026-09-20 · 工具</div><div class="divider"></div><p>工欲善其事，必先利其器。这篇文章将带你重新认识日常工具的高级用法，让你的工作效率再上一个台阶。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>jq 命令实战：3个技巧处理 JSON 数据</h1><div class="meta">2026-09-20 · 工具</div><div class="divider"></div>
+<p>工欲善其事，必先利其器。这篇文章将带你重新认识日常工具的高级用法，让你的工作效率再上一个台阶。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 3 个方面展开，带你系统掌握相关知识：</p>
 <ol>
@@ -50,13 +51,13 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius
 </ol>
 <h2>1. 别名配置：让长命令一键触发</h2>
 <p>通过别名机制，将常用的长命令简化为几个字符。不仅节省输入时间，还能减少拼写错误。</p>
-<pre><code>alias gs='git status'
+<pre><code class="language-bash">alias gs='git status'
 alias gc='git commit -m'
 alias gp='git push origin HEAD'
 alias gl='git log --oneline --graph -20'</code></pre>
 <h2>2. 变基整理：让提交历史清晰可读</h2>
 <p>交互式变基可以合并提交、调整顺序、修改提交信息，让分支历史像精心编排的故事线。</p>
-<pre><code>git rebase -i HEAD~5
+<pre><code class="language-bash">git rebase -i HEAD~5
 
 # 常用指令:
 # p = pick (保留)
@@ -65,7 +66,7 @@ alias gl='git log --oneline --graph -20'</code></pre>
 # f = fixup (丢弃信息)</code></pre>
 <h2>3. 全局忽略文件：避免临时文件污染仓库</h2>
 <p>每个开发者的本地环境不同，会产生各种临时文件。全局gitignore让你不用在每个仓库都重复配置。</p>
-<pre><code>git config --global core.excludesfile ~/.gitignore_global
+<pre><code class="language-bash">git config --global core.excludesfile ~/.gitignore_global
 
 # .gitignore_global
 .DS_Store
@@ -119,14 +120,14 @@ alias gl='git log --oneline --graph -20'</code></pre>
 <div>
 <h3>💡 推荐资源</h3>
 <div>
-<p>    <a href="https://aliyun.com/ecs?ref=myblog"  rel="nofollow sponsored"></p>
+<p>    <a href="https://aliyun.com/ecs?ref=myblog" rel="nofollow sponsored"></p>
 <div>
 <div>阿里云 ECS</div>
 <div>云服务器</div>
 </p></div>
 <p>      <span>了解详情 →</span><br />
     </a><br />
-    <a href="https://www.digitalocean.com/?ref=myblog"  rel="nofollow sponsored"></p>
+    <a href="https://www.digitalocean.com/?ref=myblog" rel="nofollow sponsored"></p>
 <div>
 <div>DigitalOcean VPS</div>
 <div>高性能云服务器，新用户送 200 美元</div>

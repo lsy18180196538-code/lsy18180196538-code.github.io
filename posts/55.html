@@ -40,7 +40,8 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>CSS布局实战：5种经典布局的现代实现</h1><div class="meta">2026-09-20 · 教程</div><div class="divider"></div><p>很多人学习新技术时只停留在表面，本文带你深入底层原理，掌握真正的核心知识。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>CSS布局实战：5种经典布局的现代实现</h1><div class="meta">2026-09-20 · 教程</div><div class="divider"></div>
+<p class="intro">很多人学习新技术时只停留在表面，本文带你深入底层原理，掌握真正的核心知识。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 5 个方面展开，带你系统掌握相关知识：</p>
 <ol>
@@ -52,7 +53,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius
 </ol>
 <h2>1. 生成器表达式节省内存</h2>
 <p>列表推导会一次性生成所有元素占用内存，生成器表达式则是惰性计算，逐个产出，处理大数据时差异巨大。</p>
-<pre><code># 坏：一次性加载全部到内存
+<pre><code class="language-python"># 坏：一次性加载全部到内存
 total = sum([x * x for x in range(10_000_000)])
 
 # 好：逐个计算，内存几乎为0

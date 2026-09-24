@@ -40,7 +40,8 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>Docker常用命令速查：5条必会操作</h1><div class="meta">2026-09-20 · 工具</div><div class="divider"></div><p>在团队协作中，工具的正确配置往往能带来指数级的效率提升。本文整理了经过线上验证的最佳实践，帮助你少走弯路。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>Docker常用命令速查：5条必会操作</h1><div class="meta">2026-09-20 · 工具</div><div class="divider"></div>
+<p class="intro">在团队协作中，工具的正确配置往往能带来指数级的效率提升。本文整理了经过线上验证的最佳实践，帮助你少走弯路。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 5 个方面展开，带你系统掌握相关知识：</p>
 <ol>
@@ -52,7 +53,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius
 </ol>
 <h2>1. 别名配置：让长命令一键触发</h2>
 <p>通过别名机制，将常用的长命令简化为几个字符。不仅节省输入时间，还能减少拼写错误。</p>
-<pre><code>alias gs='git status'
+<pre><code class="language-bash">alias gs='git status'
 alias gc='git commit -m'
 alias gp='git push origin HEAD'
 alias gl='git log --oneline --graph -20'</code></pre>
