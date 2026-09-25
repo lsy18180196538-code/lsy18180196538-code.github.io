@@ -40,8 +40,30 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>TypeScript 入门：3个核心概念快速上手</h1><div class="meta">2026-09-23 · 教程</div><div class="divider"></div>
-<p>性能优化是每个开发者的必修课。本文从实际案例出发，系统讲解优化思路和落地方法。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>TypeScript 入门：3个核心概念快速上手</h1><div class="meta">2026-09-25 · 工具分享</div><div class="divider"></div>
+<p class="intro">这是一篇面向实战的教程。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 3 个方面展开，带你系统掌握相关知识：</p>
+<ol>
+<li>类型注解与推断</li>
+<li>接口与类型别名</li>
+<li>泛型</li>
+</ol>
+<h2>1. 类型注解与推断</h2>
+<p>本节详细介绍类型注解与推断的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-typescript">let name: string = "张三";
+let age: number = 25;
+let id: string | number;
+let message = "hello";  // 推断为string</code></pre>
+<h2>2. 接口与类型别名</h2>
+<p>本节详细介绍接口与类型别名的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-typescript">interface User { id: number; name: string; email?: string; readonly role: string; }
+type Status = 'pending' | 'active' | 'inactive';
+type ID = string | number;</code></pre>
+<h2>3. 泛型</h2>
+<p>本节详细介绍泛型的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-typescript">function identity<T>(value: T): T { return value; }
+interface Repository<T> { findById(id: string): Promise<T | null>; save(e: T): Promise<T>; }
+function findById<T extends HasId>(items: T[], id: string): T | undefined { return items.find(i => i.id === id); }</code></pre>
+
 <div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>

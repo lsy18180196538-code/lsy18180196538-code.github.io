@@ -40,8 +40,46 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>Rust 入门指南：4个核心概念理解所有权</h1><div class="meta">2026-09-23 · 教程</div><div class="divider"></div>
-<p>这是一篇面向实战的教程，所有代码都经过验证，可以直接应用到你的项目中。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>Rust 入门指南：4个核心概念理解所有权</h1><div class="meta">2026-09-25 · 工具分享</div><div class="divider"></div>
+<p class="intro">这是一篇面向实战的教程，所有代码都经过验证。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 4 个方面展开，带你系统掌握相关知识：</p>
+<ol>
+<li>所有权与借用</li>
+<li>生命周期标注</li>
+<li>类型系统与模式匹配</li>
+<li>trait与泛型编程</li>
+</ol>
+<h2>1. 所有权与借用</h2>
+<p>本节详细介绍所有权与借用的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-rust">fn main() {
+    let s1 = String::from("hello");
+    let s2 = &s1;
+    println!("{} and {}", s1, s2);
+    let s3 = s1;  // 所有权转移
+}</code></pre>
+<h2>2. 生命周期标注</h2>
+<p>本节详细介绍生命周期标注的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-rust">fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() { x } else { y }
+}</code></pre>
+<h2>3. 类型系统与模式匹配</h2>
+<p>本节详细介绍类型系统与模式匹配的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-rust">enum Message { Quit, Move {x: i32, y: i32}, Write(String) }
+
+fn process(msg: Message) {
+    match msg {
+        Message::Quit => println!("退出"),
+        Message::Move { x, y } => println!("移动到 ({}, {})", x, y),
+        Message::Write(text) => println!("写入: {}", text),
+    }
+}</code></pre>
+<h2>4. trait与泛型编程</h2>
+<p>本节详细介绍trait与泛型编程的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-rust">trait Summary { fn summarize(&self) -> String; }
+
+fn notify<T: Summary>(item: &T) {
+    println!("{}", item.summarize());
+}</code></pre>
+
 <div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>

@@ -40,8 +40,31 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>Vim 提速指南：3个快捷键告别鼠标</h1><div class="meta">2026-09-23 · 工具</div><div class="divider"></div>
-<p>很多工程师用了多年工具，却从未深入研究过配置优化。本文分享的技巧来自真实团队的沉淀，每一条都能帮你节省时间。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>Vim 提速指南：3个快捷键告别鼠标</h1><div class="meta">2026-09-25 · 工具分享</div><div class="divider"></div>
+<p class="intro">工具的正确配置往往能带来指数级的效率提升。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 3 个方面展开，带你系统掌握相关知识：</p>
+<ol>
+<li>分屏操作</li>
+<li>寄存器与宏</li>
+<li>搜索与替换</li>
+</ol>
+<h2>1. 分屏操作</h2>
+<p>本节详细介绍分屏操作的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-vim">:split filename
+Ctrl+w s  水平分屏
+Ctrl+w v  垂直分屏
+Ctrl+w w  切换窗口</code></pre>
+<h2>2. 寄存器与宏</h2>
+<p>本节详细介绍寄存器与宏的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-vim">qa  开始录制到寄存器a
+q   停止录制
+@a  执行宏a
+100@a 执行100次</code></pre>
+<h2>3. 搜索与替换</h2>
+<p>本节详细介绍搜索与替换的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-vim">:%s/old/new/g
+:%s/old/new/gc
+:10,20s/old/new/g</code></pre>
+
 <div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>

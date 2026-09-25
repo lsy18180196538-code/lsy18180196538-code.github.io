@@ -40,8 +40,30 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>存储性能优化：3个技巧提升 IO 效率</h1><div class="meta">2026-09-20 · 性能</div><div class="divider"></div>
-<p>很多性能问题的根源不在代码，而在思路。本文带你建立正确的性能优化思维框架。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>存储性能优化：3个技巧提升 IO 效率</h1><div class="meta">2026-09-25 · 工具分享</div><div class="divider"></div>
+<p class="intro">很多性能问题的根源不在代码，而在思路。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 3 个方面展开，带你系统掌握相关知识：</p>
+<ol>
+<li>SSD与IO调度</li>
+<li>文件系统选择</li>
+<li>RAID与LVM</li>
+</ol>
+<h2>1. SSD与IO调度</h2>
+<p>本节详细介绍SSD与IO调度的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-bash">echo noop > /sys/block/sda/queue/scheduler
+lsblk -d -o name,rota
+fio --name=test --ioengine=libaio --bs=4k --rw=randread --direct=1</code></pre>
+<h2>2. 文件系统选择</h2>
+<p>本节详细介绍文件系统选择的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-bash">mkfs.xfs /dev/sda1
+# /etc/fstab
+/dev/sda1 /data xfs defaults,noatime,nodiratime 0 2</code></pre>
+<h2>3. RAID与LVM</h2>
+<p>本节详细介绍RAID与LVM的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-bash">mdadm --create /dev/md0 --level=5 --raid-devices=3 /dev/sda /dev/sdb /dev/sdc
+pvcreate /dev/sda; vgcreate myvg /dev/sda
+lvcreate -L 100G -n mylv myvg
+lvextend -L +50G /dev/myvg/mylv; resize2fs /dev/myvg/mylv</code></pre>
+
 <div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>

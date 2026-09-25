@@ -40,8 +40,45 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>Go 语言并发：4个 goroutine 编程模式</h1><div class="meta">2026-09-23 · 教程</div><div class="divider"></div>
-<p>很多人学习新技术时只停留在表面，本文带你深入底层原理，掌握真正的核心知识。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>Go 语言并发：4个 goroutine 编程模式</h1><div class="meta">2026-09-25 · 工具分享</div><div class="divider"></div>
+<p class="intro">这是一篇面向实战的教程。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 4 个方面展开，带你系统掌握相关知识：</p>
+<ol>
+<li>goroutine与channel</li>
+<li>sync包同步原语</li>
+<li>context超时控制</li>
+<li>errgroup错误处理</li>
+</ol>
+<h2>1. goroutine与channel</h2>
+<p>本节详细介绍goroutine与channel的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-go">func worker(id int, jobs <-chan int, results chan<- int) {
+    for j := range jobs {
+        results <- j * 2
+    }
+}</code></pre>
+<h2>2. sync包同步原语</h2>
+<p>本节详细介绍sync包同步原语的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-go">var mu sync.Mutex
+var counter int64
+func increment() { mu.Lock(); defer mu.Unlock(); counter++ }
+var wg sync.WaitGroup
+wg.Add(1); go worker(); wg.Wait()</code></pre>
+<h2>3. context超时控制</h2>
+<p>本节详细介绍context超时控制的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-go">ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+defer cancel()
+select {
+case r := <-result: fmt.Println(r)
+case <-ctx.Done(): fmt.Println("timeout:", ctx.Err())
+}</code></pre>
+<h2>4. errgroup错误处理</h2>
+<p>本节详细介绍errgroup错误处理的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-go">g, ctx := errgroup.WithContext(context.Background())
+for i, url := range urls {
+    i, url := i, url
+    g.Go(func() error { data, err := fetch(ctx, url); results[i] = data; return err })
+}
+if err := g.Wait(); err != nil { return err }</code></pre>
+
 <div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>

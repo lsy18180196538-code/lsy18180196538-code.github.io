@@ -40,8 +40,29 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>网络性能优化：3个协议层面的加速技巧</h1><div class="meta">2026-09-22 · 性能</div><div class="divider"></div>
-<p>性能优化没有银弹，但有方法论。本文系统梳理了性能优化的思路、工具和最佳实践。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>网络性能优化：3个协议层面的加速技巧</h1><div class="meta">2026-09-25 · 工具分享</div><div class="divider"></div>
+<p class="intro">快，是一种用户体验，也是一种技术追求。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 3 个方面展开，带你系统掌握相关知识：</p>
+<ol>
+<li>连接复用与Keep-Alive</li>
+<li>压缩与传输编码</li>
+<li>DNS预解析与预连接</li>
+</ol>
+<h2>1. 连接复用与Keep-Alive</h2>
+<p>本节详细介绍连接复用与Keep-Alive的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-nginx">upstream backend { server 10.0.0.1:8080; keepalive 32; }
+proxy_http_version 1.1;
+proxy_set_header Connection "";</code></pre>
+<h2>2. 压缩与传输编码</h2>
+<p>本节详细介绍压缩与传输编码的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-nginx">gzip on;
+gzip_types text/css application/json application/javascript;
+gzip_comp_level 6;</code></pre>
+<h2>3. DNS预解析与预连接</h2>
+<p>本节详细介绍DNS预解析与预连接的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-html"><link rel="dns-prefetch" href="//cdn.example.com">
+<link rel="preconnect" href="https://api.example.com">
+<link rel="preload" href="/fonts/inter.woff2" as="font" crossorigin></code></pre>
+
 <div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>

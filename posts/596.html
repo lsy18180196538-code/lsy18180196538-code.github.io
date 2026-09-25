@@ -40,8 +40,35 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>SQL 进阶查询：3个让你数据分析更高效的语法</h1><div class="meta">2026-09-23 · 教程</div><div class="divider"></div>
-<p>性能优化是每个开发者的必修课。本文从实际案例出发，系统讲解优化思路和落地方法。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>SQL 进阶查询：3个让你数据分析更高效的语法</h1><div class="meta">2026-09-25 · 工具分享</div><div class="divider"></div>
+<p class="intro">理论千遍不如实战一遍。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 3 个方面展开，带你系统掌握相关知识：</p>
+<ol>
+<li>窗口函数</li>
+<li>CTE递归查询</li>
+<li>JSON类型查询</li>
+</ol>
+<h2>1. 窗口函数</h2>
+<p>本节详细介绍窗口函数的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-sql">SELECT user_id, amount,
+  RANK() OVER (PARTITION BY user_id ORDER BY amount DESC) as rnk,
+  SUM(amount) OVER (PARTITION BY user_id) as total
+FROM orders;</code></pre>
+<h2>2. CTE递归查询</h2>
+<p>本节详细介绍CTE递归查询的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-sql">WITH RECURSIVE org_tree AS (
+  SELECT id, name, manager_id, 1 as level FROM employees WHERE manager_id IS NULL
+  UNION ALL
+  SELECT e.id, e.name, e.manager_id, ot.level + 1
+  FROM employees e JOIN org_tree ot ON e.manager_id = ot.id
+)
+SELECT * FROM org_tree;</code></pre>
+<h2>3. JSON类型查询</h2>
+<p>本节详细介绍JSON类型查询的实现原理和应用场景，配合代码示例帮助理解。</p>
+<pre><code class="language-sql">-- MySQL
+SELECT data->>'$.name' as name FROM users WHERE JSON_CONTAINS(data->'$.tags', '"admin"');
+-- PostgreSQL
+SELECT data->>'name' as name FROM users WHERE data @> '{"role": "admin"}';</code></pre>
+
 <div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>
