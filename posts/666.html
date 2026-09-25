@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="zh-CN"><head><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7745696855513741" crossorigin="anonymous"></script><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CSS布局实战：5种经典布局的现代实现 - 技术随笔ta</title><style>:root{--bg:#fafafa;--text:#1a1a1a;--text-secondary:#475569;--text-muted:#94a3b8;--accent:#6366f1;--accent-hover:#4f46e5;--border:#e2e8f0;--card-bg:#ffffff;--code-bg:#1e1e2e;--code-text:#cdd6f4;--inline-code-bg:#f1f5f9;--inline-code-text:#be185d;--table-header-bg:#f8fafc;--blockquote-bg:#f8fafc;--link:#6366f1}
+@media(prefers-color-scheme:dark){:root{--bg:#0f0f0f;--text:#e4e4e4;--text-secondary:#a1a1a1;--text-muted:#6b7280;--accent:#818cf8;--accent-hover:#a78bfa;--border:#262626;--card-bg:#1a1a1a;--code-bg:#181825;--code-text:#cdd6f4;--inline-code-bg:#262626;--inline-code-text:#f472b6;--table-header-bg:#1a1a1a;--blockquote-bg:#1a1a1a;--link:#818cf8}}
+*{box-sizing:border-box}
+html{font-size:100%;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Inter","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;margin:0;padding:0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.container{max-width:680px;margin:0 auto;padding:48px 24px}
+.site-header{text-align:center;margin-bottom:36px}
+.site-title{font-size:22px;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:-0.01em}
+.site-desc{font-size:13px;color:var(--text-muted);margin-top:4px}
+.divider{height:1px;background:var(--border);margin:28px 0}
+.post-list{list-style:none;padding:0;margin:0}
+.post-item{display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--border);transition:padding-left .15s ease}
+.post-item:hover{padding-left:4px}
+.post-item a{color:var(--text);text-decoration:none;font-size:15px;flex:1;transition:color .15s ease}
+.post-item a:hover{color:var(--accent)}
+.post-date{font-size:12px;color:var(--text-muted);margin-left:16px;white-space:nowrap}
+h1{font-size:clamp(1.5rem,4vw,1.75rem);font-weight:700;margin:0 0 16px;line-height:1.3;letter-spacing:-0.02em;text-wrap:balance}
+h2{font-size:1.3rem;font-weight:600;margin:28px 0 12px;padding-left:12px;border-left:3px solid var(--accent);line-height:1.35;text-wrap:balance}
+h3{font-size:1.1rem;font-weight:600;margin:22px 0 8px;line-height:1.4;text-wrap:balance}
+p{font-size:16px;color:var(--text-secondary);margin:0 0 16px;text-wrap:pretty}
+pre{background:var(--code-bg);color:var(--code-text);padding:16px 20px;border-radius:8px;font-size:13.5px;overflow-x:auto;margin:0 0 16px;line-height:1.6;font-family:"JetBrains Mono","Fira Code",Consolas,monospace}
+code{background:var(--inline-code-bg);padding:2px 6px;border-radius:4px;font-size:0.875em;color:var(--inline-code-text);font-family:"JetBrains Mono","Fira Code",Consolas,monospace}
+pre code{background:none;color:inherit;padding:0;font-size:inherit}
+ul,ol{font-size:16px;color:var(--text-secondary);padding-left:1.5em;margin:0 0 16px}
+li{margin-bottom:6px}
+table{border-collapse:collapse;width:100%;margin:0 0 16px;font-size:14px}
+th{background:var(--table-header-bg);padding:10px 12px;border-bottom:2px solid var(--border);font-weight:600;text-align:left;color:var(--text)}
+td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text-secondary)}
+tr:last-child td{border-bottom:none}
+blockquote{border-left:3px solid var(--accent);margin:16px 0;padding:8px 16px;color:var(--text-secondary);background:var(--blockquote-bg);border-radius:0 6px 6px 0}
+img{max-width:100%;border-radius:6px;height:auto}
+a{color:var(--link);text-decoration:none;transition:color .15s ease}
+a:hover{color:var(--accent-hover)}
+.nav-links{display:flex;justify-content:space-between;margin-top:36px;padding-top:20px;border-top:1px solid var(--border)}
+.nav-links a{font-size:13px;color:var(--text-muted)}
+.nav-links a:hover{color:var(--accent)}
+.meta{font-size:13px;color:var(--text-muted);margin-bottom:20px}
+.footer{text-align:center;margin-top:36px;padding-top:20px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted)}
+.tag{display:inline-block;background:var(--inline-code-bg);padding:3px 10px;border-radius:12px;font-size:12px;color:var(--text-secondary);margin-right:6px;transition:background .15s ease,color .15s ease}
+.tag:hover{background:var(--accent);color:#fff}
+::selection{background:rgba(99,102,241,0.15)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>CSS布局实战：5种经典布局的现代实现</h1><div class="meta">2026-09-24 · 教程</div><div class="divider"></div>
+<p class="intro">性能优化是每个开发者的必修课。本文从实际案例出发，系统讲解优化思路和落地方法。</p>
+<h2>核心要点</h2>
+<p>本文将从以下 5 个方面展开，带你系统掌握相关知识：</p>
+<ol>
+<li>并行处理充分利用多核</li>
+<li>缓存重复计算的结果</li>
+<li>使用内置数据结构替代自定义对象</li>
+<li>用局部变量加速属性查找</li>
+<li>生成器表达式节省内存</li>
+</ol>
+<h2>1. 并行处理充分利用多核</h2>
+<p>CPU密集型任务用多进程，IO密集型任务用多线程或asyncio。选对并发模型，性能轻松翻倍。</p>
+<pre><code class="language-python">from concurrent.futures import ProcessPoolExecutor
+
+def process_item(item):
+    # CPU密集型计算
+    return sum(i * i for i in range(item))
+
+items = [100_000] * 8
+
+# 串行
+results = [process_item(x) for x in items]
+
+# 并行（自动使用所有核心）
+with ProcessPoolExecutor() as executor:
+    results = list(executor.map(process_item, items))</code></pre>
+<h2>2. 缓存重复计算的结果</h2>
+<p>对于调用频繁、参数有限、结果确定的函数，加上缓存装饰器可以避免重复计算，提升一个数量级。</p>
+<pre><code class="language-python">from functools import lru_cache
+
+@lru_cache(maxsize=1024)
+def fibonacci(n):
+    if n < 2:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+# 第一次调用慢，后续调用几乎瞬时
+print(fibonacci(100))</code></pre>
+<h2>3. 使用内置数据结构替代自定义对象</h2>
+<p>很多场景下，tuple、namedtuple、dataclass 比手写的类更轻量、更快。选择合适的数据结构是优化的第一步。</p>
+<pre><code class="language-python">from collections import namedtuple
+from dataclasses import dataclass
+
+# 好：轻量且不可变
+Point = namedtuple('Point', ['x', 'y'])
+p = Point(1, 2)
+
+# 更好：支持类型提示和默认值
+@dataclass
+class Point:
+    x: float
+    y: float
+    label: str = 'origin'</code></pre>
+<h2>4. 用局部变量加速属性查找</h2>
+<p>Python的属性查找是有开销的。在循环内部，将频繁访问的属性或全局函数绑定到局部变量，可以显著提速。</p>
+<pre><code class="language-python">import math
+
+def compute_slow(values):
+    result = []
+    for v in values:
+        result.append(math.sqrt(v) + math.sin(v))
+    return result
+
+def compute_fast(values):
+    sqrt = math.sqrt
+    sin = math.sin
+    append = result = []
+    append = result.append
+    for v in values:
+        append(sqrt(v) + sin(v))
+    return result</code></pre>
+<h2>5. 生成器表达式节省内存</h2>
+<p>列表推导会一次性生成所有元素占用内存，生成器表达式则是惰性计算，逐个产出，处理大数据时差异巨大。</p>
+<pre><code class="language-python"># 坏：一次性加载全部到内存
+total = sum([x * x for x in range(10_000_000)])
+
+# 好：逐个计算，内存几乎为0
+total = sum(x * x for x in range(10_000_000))</code></pre>
+<h2>对比参考表</h2>
+<p>为了方便你快速对比和记忆，这里整理了一个汇总表格：</p>
+<table>
+<thead>
+<tr>
+<th>优化手段</th>
+<th>适用场景</th>
+<th>性能提升</th>
+<th>复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>生成器表达式</td>
+<td>大数据集遍历</td>
+<td>内存-90%</td>
+<td>低</td>
+</tr>
+<tr>
+<td>lru_cache</td>
+<td>重复计算的函数</td>
+<td>10~100倍</td>
+<td>极低</td>
+</tr>
+<tr>
+<td>局部变量绑定</td>
+<td>内层循环</td>
+<td>10~30%</td>
+<td>极低</td>
+</tr>
+<tr>
+<td>多进程并行</td>
+<td>CPU密集型任务</td>
+<td>2~8倍（看核数）</td>
+<td>中</td>
+</tr>
+</tbody>
+</table>
+<h2>最佳实践</h2>
+<ul>
+<li>先测量再优化，用数据说话，不要凭感觉</li>
+<li>关注瓶颈，优化最慢的那一环，而不是平均用力</li>
+<li>考虑边际收益，花1天提升10%不如花1天提升2倍</li>
+<li>优化的同时保持代码可读性，不要为了性能牺牲可维护性</li>
+</ul>
+<h2>总结</h2>
+<p>性能优化是一个持续的过程，不是一劳永逸的。建立性能基准、定期复测、根据数据决策，比记住多少技巧都重要。希望这篇文章能帮你建立正确的优化思路。</p>
+<div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>
