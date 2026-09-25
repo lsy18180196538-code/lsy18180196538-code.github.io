@@ -40,59 +40,8 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>Python性能优化：从慢4倍到快4倍的4个技巧</h1><div class="meta">2026-09-25 · 工具分享</div><div class="divider"></div>
-<p class="intro">性能优化是每个开发者的必修课。本文从实际案例出发，系统讲解优化思路和落地方法。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>Python性能优化：从慢4倍到快4倍的4个技巧</h1><div class="meta">2026-09-20 · 教程</div><div class="divider"></div>
+<p>性能优化是每个开发者的必修课。本文从实际案例出发，系统讲解优化思路和落地方法。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 4 个方面展开，带你系统掌握相关知识：</p>
-<ol>
-<li>列表推导式替代循环</li>
-<li>生成器处理大数据</li>
-<li>内置函数与标准库</li>
-<li>使用__slots__减少内存</li>
-</ol>
-<h2>1. 列表推导式替代循环</h2>
-<p>本节详细介绍列表推导式替代循环的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-python"># 慢：循环
-squares = []
-for i in range(1000000):
-    squares.append(i ** 2)
-
-# 快：列表推导式
-squares = [i ** 2 for i in range(1000000)]</code></pre>
-<h2>2. 生成器处理大数据</h2>
-<p>本节详细介绍生成器处理大数据的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-python"># 内存爆炸：list
-def get_data():
-    return [i for i in range(10_000_000)]
-
-# 节省内存：生成器
-def get_data():
-    for i in range(10_000_000):
-        yield i
-
-for item in get_data():
-    process(item)</code></pre>
-<h2>3. 内置函数与标准库</h2>
-<p>本节详细介绍内置函数与标准库的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-python"># 慢：手动求和
-total = 0
-for n in numbers:
-    total += n
-
-# 快：内置sum
-total = sum(numbers)
-
-# 使用map替代循环
-lengths = list(map(len, words))</code></pre>
-<h2>4. 使用__slots__减少内存</h2>
-<p>本节详细介绍使用__slots__减少内存的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-python">class Point:
-    __slots__ = ('x', 'y')
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-# 内存减少30-50%，属性访问更快
-p = Point(1, 2)</code></pre>
-
 <div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>

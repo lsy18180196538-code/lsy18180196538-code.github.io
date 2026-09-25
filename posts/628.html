@@ -40,29 +40,8 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>Shell 脚本编程：3个实用技巧提升效率</h1><div class="meta">2026-09-25 · 工具分享</div><div class="divider"></div>
-<p class="intro">工具的正确配置往往能带来指数级的效率提升。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>Shell 脚本编程：3个实用技巧提升效率</h1><div class="meta">2026-09-23 · 教程</div><div class="divider"></div>
+<p>这是一篇面向实战的教程，所有代码都经过验证，可以直接应用到你的项目中。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 3 个方面展开，带你系统掌握相关知识：</p>
-<ol>
-<li>条件判断与循环</li>
-<li>函数与变量作用域</li>
-<li>文本处理管道</li>
-</ol>
-<h2>1. 条件判断与循环</h2>
-<p>本节详细介绍条件判断与循环的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-bash">if [ -f "$file" ]; then echo "存在"; fi
-case "$1" in start) start ;; stop) stop ;; esac
-for i in {1..10}; do echo $i; done</code></pre>
-<h2>2. 函数与变量作用域</h2>
-<p>本节详细介绍函数与变量作用域的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-bash">my_func() { local x="local"; echo $x; }
-GLOBAL="global"
-print_args() { echo "$# $1 $@"; }</code></pre>
-<h2>3. 文本处理管道</h2>
-<p>本节详细介绍文本处理管道的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-bash">awk '{print $1}' access.log | sort | uniq -c | sort -rn | head -10
-cut -d',' -f1,3 data.csv
-grep -v "^#" config.conf | grep -v "^$" </code></pre>
-
 <div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>

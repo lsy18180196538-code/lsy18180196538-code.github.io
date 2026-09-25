@@ -40,37 +40,8 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>CI/CD 流水线搭建：3个环节实现自动化部署</h1><div class="meta">2026-09-25 · 工具分享</div><div class="divider"></div>
-<p class="intro">纸上得来终觉浅，绝知此事要躬行。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>CI/CD 流水线搭建：3个环节实现自动化部署</h1><div class="meta">2026-09-22 · 实战</div><div class="divider"></div>
+<p>理论千遍不如实战一遍。这篇文章记录了完整的项目复盘，包含踩过的坑和最终的解决方案。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 3 个方面展开，带你系统掌握相关知识：</p>
-<ol>
-<li>自动化构建</li>
-<li>自动化测试</li>
-<li>自动化部署</li>
-</ol>
-<h2>1. 自动化构建</h2>
-<p>本节详细介绍自动化构建的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-yaml">- uses: actions/checkout@v4
-- uses: actions/setup-node@v4
-  with: { node-version: '18', cache: 'npm' }
-- run: npm ci
-- run: npm run build</code></pre>
-<h2>2. 自动化测试</h2>
-<p>本节详细介绍自动化测试的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-yaml">- run: npx eslint .
-- run: npm test -- --coverage
-strategy:
-  matrix:
-    node-version: [16, 18, 20]</code></pre>
-<h2>3. 自动化部署</h2>
-<p>本节详细介绍自动化部署的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-yaml">- uses: appleboy/ssh-action@v1
-  with:
-    host: ${{ secrets.HOST }}
-    script: |
-      cd /var/www/app
-      git pull
-      docker-compose up -d --build</code></pre>
-
 <div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>

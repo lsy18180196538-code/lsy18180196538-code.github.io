@@ -133,4 +133,29 @@ user_map = {u.id: u for u in users}</code></pre>
 </ul>
 <h2>总结</h2>
 <p>技术在不断演进，但核心原则是相通的。掌握了底层原理，无论工具怎么变，你都能快速上手。关注本质，而非表象，这是资深工程师和初级工程师的核心区别。</p>
+<h3>1. 倒排索引与分词器优化</h3>
+<p>倒排索引是 ES 高效检索的核心。合理配置分词器能显著提升中文检索准确率，建议对中文文本使用 IK 分词器。</p>
+<pre><code>PUT /my_index
+{
+  &quot;settings&quot;: {
+    &quot;analysis&quot;: {
+      &quot;analyzer&quot;: {&quot;chinese&quot;: {&quot;tokenizer&quot;: &quot;ik_max_word&quot;}}
+    }
+  }
+}</code></pre>
+<h3>2. 聚合查询性能调优</h3>
+<p>使用 doc_values 替代 fielddata 避免内存溢出，高基数字段慎用 terms 聚合，合理设置 size 限制。</p>
+<pre><code>GET /logs/_search
+{
+  &quot;size&quot;: 0,
+  &quot;aggs&quot;: {&quot;by_status&quot;: {&quot;terms&quot;: {&quot;field&quot;: &quot;status.keyword&quot;, &quot;size&quot;: 10}}}
+}</code></pre>
+<h3>3. 分片与副本策略</h3>
+<p>单分片不宜超过 50GB，副本数根据查询压力调整，写入密集型场景可临时关闭副本加速。</p>
+<pre><code>PUT /my_index/_settings
+{ &quot;number_of_replicas&quot;: 0 }</code></pre>
+<div>
+<h3>总结</h3>
+<p>本文从 3 个方面系统介绍了的核心知识。掌握这些内容后，你应该能够在实际项目中灵活运用。建议结合具体场景多练习，加深理解和记忆。</p>
+</div>
 <div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>

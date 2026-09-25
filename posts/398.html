@@ -40,35 +40,8 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>后端性能调优：3个 Java/Python/Go 通用思路</h1><div class="meta">2026-09-25 · 工具分享</div><div class="divider"></div>
-<p class="intro">很多性能问题的根源不在代码，而在思路。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>后端性能调优：3个 Java/Python/Go 通用思路</h1><div class="meta">2026-09-22 · 性能</div><div class="divider"></div>
+<p>快，是一种用户体验，也是一种技术追求。这篇文章教你如何系统性地提升系统性能。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 3 个方面展开，带你系统掌握相关知识：</p>
-<ol>
-<li>数据库连接池</li>
-<li>异步处理与消息队列</li>
-<li>缓存策略</li>
-</ol>
-<h2>1. 数据库连接池</h2>
-<p>本节详细介绍数据库连接池的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-java">HikariConfig config = new HikariConfig();
-config.setMaximumPoolSize(20);
-config.setMinimumIdle(5);
-HikariDataSource ds = new HikariDataSource(config);</code></pre>
-<h2>2. 异步处理与消息队列</h2>
-<p>本节详细介绍异步处理与消息队列的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-python">@app.task
-def send_email(to, subject, body):
-    pass
-send_email.delay('user@example.com', 'Hi', 'Hello!')</code></pre>
-<h2>3. 缓存策略</h2>
-<p>本节详细介绍缓存策略的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-javascript">async function getProduct(id) {
-  let p = await redis.get(`product:${id}`);
-  if (p) return JSON.parse(p);
-  p = await db.findById(id);
-  if (p) await redis.setex(`product:${id}`, 3600, JSON.stringify(p));
-  return p;
-}</code></pre>
-
 <div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>

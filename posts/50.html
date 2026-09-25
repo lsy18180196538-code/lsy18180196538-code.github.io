@@ -40,30 +40,8 @@ a:hover{color:var(--accent-hover)}
 .tag:hover{background:var(--accent);color:#fff}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
-@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>从零搭建微服务：3个核心组件的选型与落地</h1><div class="meta">2026-09-25 · 工具分享</div><div class="divider"></div>
-<p class="intro">分布式系统的复杂性远超单体应用。</p>
+@media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><h1>从零搭建微服务：3个核心组件的选型与落地</h1><div class="meta">2026-09-20 · 实战</div><div class="divider"></div>
+<p>理论千遍不如实战一遍。这篇文章记录了完整的项目复盘，包含踩过的坑和最终的解决方案。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 3 个方面展开，带你系统掌握相关知识：</p>
-<ol>
-<li>服务拆分原则</li>
-<li>服务注册与发现</li>
-<li>API网关</li>
-</ol>
-<h2>1. 服务拆分原则</h2>
-<p>本节详细介绍服务拆分原则的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-text"># 按业务边界拆分（DDD限界上下文）
-# 用户服务、订单服务、商品服务、支付服务
-# 服务间通信：REST/gRPC同步 + 消息队列异步</code></pre>
-<h2>2. 服务注册与发现</h2>
-<p>本节详细介绍服务注册与发现的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-python">import consul
-c = consul.Consul()
-c.agent.service.register(name='order-service', service_id='order-1',
-    address='10.0.0.1', port=8080,
-    check=consul.Check.http('http://10.0.0.1:8080/health', interval='10s'))</code></pre>
-<h2>3. API网关</h2>
-<p>本节详细介绍API网关的实现原理和应用场景，配合代码示例帮助理解。</p>
-<pre><code class="language-bash">curl -X POST http://localhost:8001/services -d name=user-service -d url=http://user-service:8080
-curl -X POST http://localhost:8001/services/user-service/routes -d paths[]=/api/users</code></pre>
-
 <div class="nav-links"><a href="../index.html">← 返回首页</a></div><div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>
