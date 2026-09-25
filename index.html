@@ -41,19 +41,23 @@ a:hover{color:var(--accent-hover)}
 ::selection{background:rgba(99,102,241,0.15)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
 @media(max-width:640px){.container{padding:32px 16px}.post-item{flex-direction:column;align-items:flex-start;gap:2px}.post-date{margin-left:0;font-size:11px}p{font-size:15px}pre{font-size:12.5px;padding:14px 16px}}
+.title-row{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.back-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;font-size:13px;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;white-space:nowrap;transition:all .15s ease;background:var(--card-bg)}
+.back-btn:hover{color:var(--accent);border-color:var(--accent)}
+.title-row h1{margin:0;flex:1}
+
 .search-box{margin-bottom:32px;text-align:center}
 .search-box input{width:100%;max-width:480px;padding:12px 18px;font-size:15px;border:1px solid var(--border);border-radius:8px;background:var(--card-bg);color:var(--text);outline:none;transition:border-color .15s}
 .search-box input:focus{border-color:var(--accent)}
 .search-result{margin-top:16px;text-align:center;color:var(--text-muted);font-size:13px;min-height:20px}
-.section{margin-bottom:40px}
-.section-header{display:flex;align-items:baseline;gap:10px;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--border)}
-.section-title{font-size:1.25rem;font-weight:700;color:var(--text);margin:0}
-.section-count{font-size:13px;color:var(--text-muted)}
-.section-more{margin-left:auto;font-size:13px;color:var(--accent)}
-.section-more:hover{color:var(--accent-hover)}
-.section-list{list-style:none;padding:0;margin:0}
-.section-list .post-item{padding:9px 0}
-.section-list .post-item a{font-size:14.5px}
+.section{margin-bottom:28px}
+.section-header{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.section-title{font-size:1.15rem;font-weight:700;color:var(--text);margin:0}
+.section-count{font-size:12px;color:var(--text-muted)}
+.sub-tags{display:flex;flex-wrap:wrap;gap:8px}
+.sub-tag{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;background:var(--card-bg);border:1px solid var(--border);border-radius:20px;color:var(--text-secondary);text-decoration:none;font-size:13px;transition:all .15s}
+.sub-tag:hover{border-color:var(--accent);color:var(--accent)}
+.sub-tag .cnt{font-size:11px;color:var(--text-muted);background:var(--inline-code-bg);padding:1px 6px;border-radius:10px}
 </style></head><body><div class="container">
 <div class="site-header"><a href="index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div>
 <div class="search-box">
@@ -65,48 +69,33 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius
 <div class="section">
 <div class="section-header">
 <h2 class="section-title">实战</h2>
-<span class="section-count">26 篇文章</span>
-<a href="category/2.html" class="section-more">查看全部 26 篇 →</a>
+<span class="section-count">26 篇</span>
 </div>
-<ul class="section-list">
-<li class="post-item"><a href="posts/670.html">搜索服务实践：3个 Elasticsearch 使用技巧</a><span class="post-date">2026-09-25</span></li><li class="post-item"><a href="posts/669.html">从零搭建微服务：3个核心组件的选型与落地</a><span class="post-date">2026-09-25</span></li><li class="post-item"><a href="posts/637.html">CI/CD 流水线搭建：3个环节实现自动化部署</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/627.html">从零搭建微服务：3个核心组件的选型与落地</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/624.html">缓存架构设计：3个模式解决性能瓶颈</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/611.html">监控告警系统：3个核心指标保障服务稳定</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/605.html">API 网关实践：3个功能点统一入口管理</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/600.html">从零搭建微服务：3个核心组件的选型与落地</a><span class="post-date">2026-09-23</span></li>
-</ul>
+<div class="sub-tags"><a href="sub/实战/微服务搭建.html" class="sub-tag">微服务搭建<span class="cnt">6</span></a><a href="sub/实战/线上故障排查.html" class="sub-tag">线上故障排查<span class="cnt">6</span></a><a href="sub/实战/搜索服务.html" class="sub-tag">搜索服务<span class="cnt">2</span></a><a href="sub/实战/CI/CD.html" class="sub-tag">CI/CD<span class="cnt">2</span></a><a href="sub/实战/缓存架构.html" class="sub-tag">缓存架构<span class="cnt">2</span></a><a href="sub/实战/监控告警.html" class="sub-tag">监控告警<span class="cnt">2</span></a><a href="sub/实战/API网关.html" class="sub-tag">API网关<span class="cnt">2</span></a><a href="sub/实战/消息队列.html" class="sub-tag">消息队列<span class="cnt">2</span></a><a href="sub/实战/日志系统.html" class="sub-tag">日志系统<span class="cnt">2</span></a></div>
 </div><div class="section">
 <div class="section-header">
 <h2 class="section-title">教程</h2>
-<span class="section-count">33 篇文章</span>
-<a href="category/6.html" class="section-more">查看全部 33 篇 →</a>
+<span class="section-count">33 篇</span>
 </div>
-<ul class="section-list">
-<li class="post-item"><a href="posts/666.html">CSS布局实战：5种经典布局的现代实现</a><span class="post-date">2026-09-24</span></li><li class="post-item"><a href="posts/664.html">JavaScript 异步编程：4种方式的对比与选择</a><span class="post-date">2026-09-24</span></li><li class="post-item"><a href="posts/663.html">CSS布局实战：5种经典布局的现代实现</a><span class="post-date">2026-09-24</span></li><li class="post-item"><a href="posts/649.html">React Hooks深度解析：5个你可能不知道的用法</a><span class="post-date">2026-09-24</span></li><li class="post-item"><a href="posts/638.html">Rust 入门指南：4个核心概念理解所有权</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/635.html">JavaScript 异步编程：3种方式的对比与选择</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/634.html">Go 语言并发：3个 goroutine 编程模式</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/628.html">Shell 脚本编程：3个实用技巧提升效率</a><span class="post-date">2026-09-23</span></li>
-</ul>
+<div class="sub-tags"><a href="sub/教程/Python性能.html" class="sub-tag">Python性能<span class="cnt">7</span></a><a href="sub/教程/CSS布局.html" class="sub-tag">CSS布局<span class="cnt">6</span></a><a href="sub/教程/React-Hooks.html" class="sub-tag">React Hooks<span class="cnt">6</span></a><a href="sub/教程/JS异步.html" class="sub-tag">JS异步<span class="cnt">2</span></a><a href="sub/教程/Rust入门.html" class="sub-tag">Rust入门<span class="cnt">2</span></a><a href="sub/教程/Go并发.html" class="sub-tag">Go并发<span class="cnt">2</span></a><a href="sub/教程/Shell脚本.html" class="sub-tag">Shell脚本<span class="cnt">2</span></a><a href="sub/教程/Vue3.html" class="sub-tag">Vue3<span class="cnt">2</span></a><a href="sub/教程/TypeScript.html" class="sub-tag">TypeScript<span class="cnt">2</span></a><a href="sub/教程/SQL进阶.html" class="sub-tag">SQL进阶<span class="cnt">2</span></a></div>
 </div><div class="section">
 <div class="section-header">
 <h2 class="section-title">工具</h2>
-<span class="section-count">31 篇文章</span>
-<a href="category/5.html" class="section-more">查看全部 31 篇 →</a>
+<span class="section-count">31 篇</span>
 </div>
-<ul class="section-list">
-<li class="post-item"><a href="posts/661.html">Git高级技巧：5个让你团队效率翻倍的配置</a><span class="post-date">2026-09-24</span></li><li class="post-item"><a href="posts/640.html">Vim 提速指南：4个快捷键告别鼠标</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/639.html">Vim 提速指南：3个快捷键告别鼠标</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/633.html">tmux 入门指南：3个命令搞定多窗口开发</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/632.html">Docker常用命令速查：5条必会操作</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/629.html">sed &#038; awk 入门：4个实用文本处理技巧</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/575.html">curl 高级用法：4个场景掌握 HTTP 调试</a><span class="post-date">2026-09-22</span></li><li class="post-item"><a href="posts/570.html">Git高级技巧：5个让你团队效率翻倍的配置</a><span class="post-date">2026-09-22</span></li>
-</ul>
+<div class="sub-tags"><a href="sub/工具/Git.html" class="sub-tag">Git<span class="cnt">7</span></a><a href="sub/工具/Docker.html" class="sub-tag">Docker<span class="cnt">6</span></a><a href="sub/工具/VS-Code.html" class="sub-tag">VS Code<span class="cnt">6</span></a><a href="sub/工具/Vim.html" class="sub-tag">Vim<span class="cnt">2</span></a><a href="sub/工具/tmux.html" class="sub-tag">tmux<span class="cnt">2</span></a><a href="sub/工具/sed-and-awk.html" class="sub-tag">sed & awk<span class="cnt">2</span></a><a href="sub/工具/curl.html" class="sub-tag">curl<span class="cnt">2</span></a><a href="sub/工具/jq.html" class="sub-tag">jq<span class="cnt">2</span></a><a href="sub/工具/Homebrew.html" class="sub-tag">Homebrew<span class="cnt">2</span></a></div>
 </div><div class="section">
 <div class="section-header">
 <h2 class="section-title">性能</h2>
-<span class="section-count">25 篇文章</span>
-<a href="category/2.html" class="section-more">查看全部 25 篇 →</a>
+<span class="section-count">25 篇</span>
 </div>
-<ul class="section-list">
-<li class="post-item"><a href="posts/662.html">数据库优化指南：3个让查询快3倍的技巧</a><span class="post-date">2026-09-24</span></li><li class="post-item"><a href="posts/636.html">数据库优化指南：3个让查询快3倍的技巧</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/618.html">网络性能优化：3个协议层面的加速技巧</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/615.html">负载均衡策略：3种算法的适用场景对比</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/601.html">缓存性能策略：3个模式提升命中率</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/594.html">移动端性能优化：3个手段提升用户体验</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/591.html">缓存性能策略：3个模式提升命中率</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/585.html">JVM 调优实战：3个参数配置经验总结</a><span class="post-date">2026-09-22</span></li>
-</ul>
+<div class="sub-tags"><a href="sub/性能/数据库优化.html" class="sub-tag">数据库优化<span class="cnt">6</span></a><a href="sub/性能/前端性能.html" class="sub-tag">前端性能<span class="cnt">5</span></a><a href="sub/性能/网络性能.html" class="sub-tag">网络性能<span class="cnt">2</span></a><a href="sub/性能/负载均衡.html" class="sub-tag">负载均衡<span class="cnt">2</span></a><a href="sub/性能/缓存性能.html" class="sub-tag">缓存性能<span class="cnt">2</span></a><a href="sub/性能/移动端性能.html" class="sub-tag">移动端性能<span class="cnt">2</span></a><a href="sub/性能/JVM调优.html" class="sub-tag">JVM调优<span class="cnt">2</span></a><a href="sub/性能/Python性能.html" class="sub-tag">Python性能<span class="cnt">2</span></a><a href="sub/性能/存储性能.html" class="sub-tag">存储性能<span class="cnt">2</span></a></div>
 </div><div class="section">
 <div class="section-header">
 <h2 class="section-title">架构</h2>
-<span class="section-count">26 篇文章</span>
-<a href="category/4.html" class="section-more">查看全部 26 篇 →</a>
+<span class="section-count">26 篇</span>
 </div>
-<ul class="section-list">
-<li class="post-item"><a href="posts/665.html">Serverless 架构：3个适用场景与实践</a><span class="post-date">2026-09-24</span></li><li class="post-item"><a href="posts/631.html">高可用架构设计：3个手段保障99.99%可用性</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/630.html">高可用架构设计：3个手段保障3.99%可用性</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/621.html">高并发系统设计：3个必须考虑的架构要点</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/620.html">微服务架构模式：3种经典设计解析</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/609.html">数据架构设计：3个模式应对海量数据</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/607.html">微服务架构模式：3种经典设计解析</a><span class="post-date">2026-09-23</span></li><li class="post-item"><a href="posts/577.html">分布式事务解决方案：3种模式的对比与选型</a><span class="post-date">2026-09-22</span></li>
-</ul>
+<div class="sub-tags"><a href="sub/架构/高并发设计.html" class="sub-tag">高并发设计<span class="cnt">6</span></a><a href="sub/架构/分布式事务.html" class="sub-tag">分布式事务<span class="cnt">6</span></a><a href="sub/架构/Serverless.html" class="sub-tag">Serverless<span class="cnt">2</span></a><a href="sub/架构/高可用.html" class="sub-tag">高可用<span class="cnt">2</span></a><a href="sub/架构/微服务架构.html" class="sub-tag">微服务架构<span class="cnt">2</span></a><a href="sub/架构/数据架构.html" class="sub-tag">数据架构<span class="cnt">2</span></a><a href="sub/架构/DDD.html" class="sub-tag">DDD<span class="cnt">2</span></a><a href="sub/架构/云原生.html" class="sub-tag">云原生<span class="cnt">2</span></a><a href="sub/架构/事件驱动.html" class="sub-tag">事件驱动<span class="cnt">2</span></a></div>
 </div>
 <div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div>
 </div><script>
@@ -128,9 +117,9 @@ function doSearch(q) {
   );
   sections.forEach(s => s.style.display = "none");
   list.style.display = "";
-  box.textContent = `找到 ${matched.length} 篇相关文章`;
+  box.textContent = "找到 " + matched.length + " 篇相关文章";
   list.innerHTML = matched.map(p => 
-    `<li class="post-item"><a href="posts/${p.id}.html">${p.title}</a><span class="post-date">${p.cat} · ${p.date}</span></li>`
+    "<li class=\"post-item\"><a href=\"posts/" + p.id + ".html\">" + p.title + "</a><span class=\"post-date\">" + p.cat + " · " + p.date + "</span></li>"
   ).join("");
 }
 document.addEventListener("DOMContentLoaded", function() {
