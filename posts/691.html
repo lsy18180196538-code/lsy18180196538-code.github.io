@@ -62,15 +62,36 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius
 .contact-card h3{margin:0 0 8px;font-size:16px;color:var(--text)}
 .contact-card p{margin:0;font-size:14px;color:var(--text-secondary)}
 .contact-card .wx{display:inline-block;margin-top:12px;padding:8px 20px;background:#07c160;color:#fff;border-radius:6px;font-size:14px;font-weight:500}
-</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><div class="title-row"><a href="../index.html" class="back-btn">← 返回</a><h1>CSS布局实战：5种经典布局的现代实现</h1></div><div class="meta">2026-09-24 · 教程</div><div class="divider"></div>
-<p class="intro">性能优化是每个开发者的必修课。本文从实际案例出发，系统讲解优化思路和落地方法。</p>
+
+.search-box{margin-bottom:32px;text-align:center}
+.search-box input{width:100%;max-width:480px;padding:12px 18px;font-size:15px;border:1px solid var(--border);border-radius:8px;background:var(--card-bg);color:var(--text);outline:none;transition:border-color .15s}
+.search-box input:focus{border-color:var(--accent)}
+.search-result{margin-top:16px;text-align:center;color:var(--text-muted);font-size:13px;min-height:20px}
+.section{margin-bottom:28px}
+.section-header{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.section-title{font-size:1.15rem;font-weight:700;color:var(--text);margin:0}
+.section-count{font-size:12px;color:var(--text-muted)}
+.sub-tags{display:flex;flex-wrap:wrap;gap:8px}
+.sub-tag{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;background:var(--card-bg);border:1px solid var(--border);border-radius:20px;color:var(--text-secondary);text-decoration:none;font-size:13px;transition:all .15s}
+.sub-tag:hover{border-color:var(--accent);color:var(--accent)}
+.sub-tag .cnt{font-size:11px;color:var(--text-muted);background:var(--inline-code-bg);padding:1px 6px;border-radius:10px}
+.contact-card{margin-bottom:24px;padding:20px;background:var(--card-bg);border:1px solid var(--border);border-radius:12px;text-align:center}
+.contact-card h3{margin:0 0 6px;font-size:15px;color:var(--text)}
+.contact-card p{margin:0;font-size:13px;color:var(--text-secondary)}
+.contact-card .wx{display:inline-block;margin-top:8px;padding:6px 16px;background:#07c160;color:#fff;border-radius:6px;font-size:13px;font-weight:500}
+.title-row{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.back-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;font-size:13px;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;white-space:nowrap;transition:all .15s ease;background:var(--card-bg)}
+.back-btn:hover{color:var(--accent);border-color:var(--accent)}
+.title-row h1{margin:0;flex:1;font-size:clamp(1.3rem,3vw,1.6rem)}
+</style><script>window.addEventListener('scroll',function(){var h=document.documentElement;var st=h.scrollTop||document.body.scrollTop;var sh=h.scrollHeight-h.clientHeight;var p=Math.round(st/sh*100);var bar=document.getElementById('rp');if(bar)bar.style.width=p+'%'});</script><div id="rp" style="position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:9999;transition:width .1s"></div></head><body><div class="container"><div class="site-header"><a href="../index.html" class="site-title">技术随笔ta</a><div class="site-desc">技术文章 · 学习笔记 · 工具分享</div></div><div class="title-row"><a href="../index.html" class="back-btn">← 返回</a><h1>CSS布局实战：5种经典布局的现代实现</h1></div><div class="meta">2026-09-26 · 教程</div><div class="divider"></div>
+<p class="intro">很多人学习新技术时只停留在表面，本文带你深入底层原理，掌握真正的核心知识。</p>
 <h2>核心要点</h2>
 <p>本文将从以下 5 个方面展开，带你系统掌握相关知识：</p>
 <ol>
 <li>并行处理充分利用多核</li>
 <li>缓存重复计算的结果</li>
-<li>使用内置数据结构替代自定义对象</li>
 <li>用局部变量加速属性查找</li>
+<li>使用内置数据结构替代自定义对象</li>
 <li>生成器表达式节省内存</li>
 </ol>
 <h2>1. 并行处理充分利用多核</h2>
@@ -101,22 +122,7 @@ def fibonacci(n):
 
 # 第一次调用慢，后续调用几乎瞬时
 print(fibonacci(100))</code></pre>
-<h2>3. 使用内置数据结构替代自定义对象</h2>
-<p>很多场景下，tuple、namedtuple、dataclass 比手写的类更轻量、更快。选择合适的数据结构是优化的第一步。</p>
-<pre><code class="language-python">from collections import namedtuple
-from dataclasses import dataclass
-
-# 好：轻量且不可变
-Point = namedtuple('Point', ['x', 'y'])
-p = Point(1, 2)
-
-# 更好：支持类型提示和默认值
-@dataclass
-class Point:
-    x: float
-    y: float
-    label: str = 'origin'</code></pre>
-<h2>4. 用局部变量加速属性查找</h2>
+<h2>3. 用局部变量加速属性查找</h2>
 <p>Python的属性查找是有开销的。在循环内部，将频繁访问的属性或全局函数绑定到局部变量，可以显著提速。</p>
 <pre><code class="language-python">import math
 
@@ -134,6 +140,21 @@ def compute_fast(values):
     for v in values:
         append(sqrt(v) + sin(v))
     return result</code></pre>
+<h2>4. 使用内置数据结构替代自定义对象</h2>
+<p>很多场景下，tuple、namedtuple、dataclass 比手写的类更轻量、更快。选择合适的数据结构是优化的第一步。</p>
+<pre><code class="language-python">from collections import namedtuple
+from dataclasses import dataclass
+
+# 好：轻量且不可变
+Point = namedtuple('Point', ['x', 'y'])
+p = Point(1, 2)
+
+# 更好：支持类型提示和默认值
+@dataclass
+class Point:
+    x: float
+    y: float
+    label: str = 'origin'</code></pre>
 <h2>5. 生成器表达式节省内存</h2>
 <p>列表推导会一次性生成所有元素占用内存，生成器表达式则是惰性计算，逐个产出，处理大数据时差异巨大。</p>
 <pre><code class="language-python"># 坏：一次性加载全部到内存
@@ -181,35 +202,11 @@ total = sum(x * x for x in range(10_000_000))</code></pre>
 </table>
 <h2>最佳实践</h2>
 <ul>
+<li>考虑边际收益，花1天提升10%不如花1天提升2倍</li>
+<li>建立性能基准，每次优化后对比结果</li>
 <li>先测量再优化，用数据说话，不要凭感觉</li>
 <li>关注瓶颈，优化最慢的那一环，而不是平均用力</li>
-<li>考虑边际收益，花1天提升10%不如花1天提升2倍</li>
-<li>优化的同时保持代码可读性，不要为了性能牺牲可维护性</li>
 </ul>
 <h2>总结</h2>
-<p>性能优化是一个持续的过程，不是一劳永逸的。建立性能基准、定期复测、根据数据决策，比记住多少技巧都重要。希望这篇文章能帮你建立正确的优化思路。</p>
-<h3>1. 经典布局核心概念</h3>
-<p>深入理解经典布局的核心原理，掌握底层机制才能在实战中灵活运用。</p>
-<pre><code>// 经典布局 核心概念
-// 理解原理是掌握的第一步</code></pre>
-<h3>2. 经典布局实战应用</h3>
-<p>在实际项目中如何应用经典布局，结合具体场景给出最佳实践方案。</p>
-<pre><code>// 经典布局 实战代码
-// 结合业务场景使用</code></pre>
-<h3>3. 经典布局常见问题</h3>
-<p>使用经典布局过程中常见的问题和解决方案，帮助你少走弯路。</p>
-<pre><code>// 常见问题与解决方案
-// 注意事项</code></pre>
-<h3>4. 经典布局性能优化</h3>
-<p>如何优化经典布局的性能，提升系统整体运行效率。</p>
-<pre><code>// 性能优化要点
-// 关键配置</code></pre>
-<h3>5. 经典布局工具生态</h3>
-<p>经典布局相关的工具链和生态系统，提升开发效率。</p>
-<pre><code>// 推荐工具
-// 提升效率</code></pre>
-<div>
-<h3>总结</h3>
-<p>本文从 5 个方面系统介绍了经典布局的核心知识。掌握这些内容后，你应该能够在实际项目中灵活运用。建议结合具体场景多练习，加深理解和记忆。</p>
-</div>
+<p>技术在不断演进，但核心原则是相通的。掌握了底层原理，无论工具怎么变，你都能快速上手。关注本质，而非表象，这是资深工程师和初级工程师的核心区别。</p>
 <div class="footer">技术随笔ta · 技术文章 · 学习笔记 · 工具分享</div></div></body></html>
